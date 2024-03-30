@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+                /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from "react";
 import PropTypes from "prop-types";
@@ -13,13 +13,21 @@ const Select = ({
   label,
   type = "normal",
 }) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(null);
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange();
+
+    // console.log("newValue:", newValue);
+    // console.log("value:", value);
+    // console.log("collapsed:", collapsed);
+
+    // Ajout d'une nouvelle valeur (newValue) a onChange
+    onChange(newValue);
     setValue(newValue);
-    setCollapsed(newValue);
+    // Suppression de (newValue) et ajout de (!collapsed)
+    setCollapsed(!collapsed);
   };
+
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
       {label && <div className="label">{label}</div>}
